@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Red_Hat_Display } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -24,7 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        />
+      </head>
       <body className={`${redHatDisplay.className} antialiased`}>
+        <Header />
         {children}
       </body>
     </html>
