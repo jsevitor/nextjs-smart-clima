@@ -1,9 +1,10 @@
 import Image from "next/image";
+import TabNavigation from "./components/TabNavigation";
 
 export default function Home() {
   return (
-    <div>
-      <h1>SMART CLIMA</h1>
+    <div className="container mx-auto h-screen pt-24 flex">
+      <TabNavigation />
     </div>
   );
 }
