@@ -1,4 +1,5 @@
-import Image from "next/image";
+"use client";
+
 import TabNavigation from "./components/TabNavigation";
 import WeatherOverviewCard from "./components/weather/WeatherOverviewCard";
 import WeatherTomorrowCard from "./components/weather/WeatherTomorrowCard";
@@ -6,21 +7,26 @@ import WeatherNextDaysCard from "./components/weather/WeatherNextDaysCard";
 import MoonPhaseCard from "./components/weather/MoonPhaseCard";
 import RainProbabilityChart from "./components/weather/RainProbabilityChart";
 import RainAccumulatedChart from "./components/weather/RainAccumulatedChart";
+import { useState } from "react";
 
 export default function Home() {
+  const [selectedTab, setSelectedTab] = useState("today");
+
   return (
     <main className="container mx-auto h-screen pt-24 flex flex-col gap-4">
-      <TabNavigation />
+      <TabNavigation
+        selectedTab={selectedTab}
+        setSelectedTab={setSelectedTab}
+      />
       <div className="flex gap-4">
-        <WeatherOverviewCard />
+        {selectedTab === "today" && <WeatherOverviewCard />}
+        {selectedTab === "tomorrow" && <WeatherTomorrowCard />}
+        {selectedTab === "nextDays" && <WeatherNextDaysCard />}
         <MoonPhaseCard />
       </div>
       <div className="flex gap-4">
-        <WeatherTomorrowCard />
-        <RainProbabilityChart />
-        <RainAccumulatedChart />
+        <p>soon</p>
       </div>
-      <WeatherNextDaysCard />
     </main>
   );
 }
