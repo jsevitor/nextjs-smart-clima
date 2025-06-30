@@ -25,7 +25,13 @@ export default function Home() {
         <MoonPhaseCard />
       </div>
       <div className="flex gap-4">
-        <p>soon</p>
+        <div className="w-2/3 bg-borderColor rounded-2xl p-4">
+          <p>soon</p>
+        </div>
+        <div className="w-1/3 flex flex-col gap-4">
+          <RainProbabilityChart />
+          <RainAccumulatedChart />
+        </div>
       </div>
     </main>
   );
