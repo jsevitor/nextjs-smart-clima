@@ -1,4 +1,6 @@
 import { useWeatherStore } from "@/store/useWeatherStore";
+import { getConditionIconUrl } from "@/utils/helpers";
+import Image from "next/image";
 
 export default function WeatherNextDaysCard() {
   const { data, loading } = useWeatherStore();
@@ -19,7 +21,12 @@ export default function WeatherNextDaysCard() {
               {item.weekday}
             </span>
             <span className="text-sm">{item.date}</span>
-            <i className="bi bi-cloud-sun text-5xl"></i>
+            <Image
+              src={getConditionIconUrl(item.condition)}
+              alt={item.description}
+              width={60}
+              height={60}
+            />
             <span className="text-sm text-center">{item.description}</span>
             <div className="flex flex-col gap-2">
               <span className="font-semibold text-center">

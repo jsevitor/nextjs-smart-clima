@@ -1,4 +1,7 @@
 import { useWeatherStore } from "@/store/useWeatherStore";
+import { getConditionIconUrl } from "@/utils/helpers";
+import { weekdays } from "@/utils/resources";
+import Image from "next/image";
 
 export default function WeatherTomorrowCard() {
   const { data, loading } = useWeatherStore();
@@ -15,7 +18,7 @@ export default function WeatherTomorrowCard() {
               <span>{data.city}</span>
             </div>
             <div className="flex gap-2">
-              <span>{data.forecast[1].weekday},</span>
+              <span>{weekdays[data.forecast[1].weekday]},</span>
               <span>{data.forecast[1].date}</span>
             </div>
           </div>
@@ -23,7 +26,12 @@ export default function WeatherTomorrowCard() {
             <div className="flex justify-center w-1/2 mt-2">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-4 items-center">
-                  <i className="bi bi-cloud-sun text-8xl"></i>
+                  <Image
+                    src={getConditionIconUrl(data.condition_slug)}
+                    alt={data.description}
+                    width={120}
+                    height={120}
+                  />
                   <span className="font-semibold">{data.description}</span>
                 </div>
                 <div className="flex flex-col items-center justify-center">

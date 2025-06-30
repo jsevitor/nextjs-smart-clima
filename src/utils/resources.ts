@@ -1,4 +1,4 @@
-export const weekdays = {
+export const weekdays: Record<string, string> = {
   Seg: "Segunda-feira",
   Ter: "Terça-feira",
   Qua: "Quarta-feira",

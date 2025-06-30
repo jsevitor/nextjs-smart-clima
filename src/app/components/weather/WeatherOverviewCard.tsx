@@ -1,12 +1,15 @@
 "use client";
 import { useEffect } from "react";
 import { useWeatherStore } from "@/store/useWeatherStore";
+import { getConditionIconUrl } from "@/utils/helpers";
+import Image from "next/image";
+import { weekdays } from "@/utils/resources";
 
 export default function WeatherOverviewCard() {
   const { data, loading, fetchWeather } = useWeatherStore();
 
   useEffect(() => {
-    // fetchWeather("São Paulo");
+    fetchWeather("São Paulo");
   }, []);
 
   if (loading) return <p>Carregando...</p>;
@@ -21,7 +24,7 @@ export default function WeatherOverviewCard() {
               <span>{data.city}</span>
             </div>
             <div className="flex gap-2">
-              <span>{data.forecast[0].weekday}</span>
+              <span>{weekdays[data.forecast[0].weekday]},</span>
               <span>{data.time}</span>
             </div>
           </div>
@@ -29,8 +32,13 @@ export default function WeatherOverviewCard() {
             <div className="flex justify-center w-1/2 mt-2">
               <div className="flex flex-col gap-4">
                 <div className="flex gap-8 items-center">
-                  <i className="bi bi-cloud-sun text-7xl"></i>
-                  <div className="">
+                  <Image
+                    src={getConditionIconUrl(data.condition_slug)}
+                    alt={data.description}
+                    width={120}
+                    height={120}
+                  />
+                  <div>
                     <span className="text-8xl font-extrabold">
                       {data.temp}°
                     </span>
@@ -54,30 +62,28 @@ export default function WeatherOverviewCard() {
             <div className="flex justify-center w-1/2 mt-2">
               <div className="flex flex-col gap-2 w-4/5">
                 <div className="flex justify-between border-b border-background pb-2">
-                  <span className="">Chuva</span>
-                  <span className="">{data.rain} mm</span>
+                  <span>Chuva</span>
+                  <span>{data.rain} mm</span>
                 </div>
                 <div className="flex justify-between border-b border-background pb-2">
-                  <span className="">Vento</span>
-                  <span className="">{data.wind_speedy}</span>
+                  <span>Vento</span>
+                  <span>{data.wind_speedy}</span>
                 </div>
                 <div className="flex justify-between border-b border-background pb-2">
-                  <span className="">Umidade</span>
-                  <span className="">{data.humidity} %</span>
+                  <span>Umidade</span>
+                  <span>{data.humidity} %</span>
                 </div>
                 <div className="flex justify-between border-b border-background pb-2">
-                  <span className="">Prob. de Chuva</span>
-                  <span className="">
-                    {data.forecast[0].rain_probability} %
-                  </span>
+                  <span>Prob. de Chuva</span>
+                  <span>{data.forecast[0].rain_probability} %</span>
                 </div>
                 <div className="flex justify-between border-b border-background pb-2">
-                  <span className="">Nascer do Sol</span>
-                  <span className="">{data.sunrise}</span>
+                  <span>Nascer do Sol</span>
+                  <span>{data.sunrise}</span>
                 </div>
                 <div className="flex justify-between ">
-                  <span className="">Por do Sol</span>
-                  <span className="">{data.sunset}</span>
+                  <span>Por do Sol</span>
+                  <span>{data.sunset}</span>
                 </div>
               </div>
             </div>
