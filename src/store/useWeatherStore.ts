@@ -1,5 +1,6 @@
-import { getWeatherByCity } from "@/services/weatherService";
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { getWeatherByCity } from "@/services/weatherService";
 
 type ForecastDay = {
   date: string;
@@ -39,21 +40,34 @@ type Weather = {
 type WeatherStore = {
   data: Weather | null;
   loading: boolean;
+  lastCity: string | null;
   fetchWeather: (city: string) => Promise<void>;
 };
 
-export const useWeatherStore = create<WeatherStore>((set) => ({
-  data: null,
-  loading: false,
+export const useWeatherStore = create<WeatherStore>()(
+  persist(
+    (set, get) => ({
+      data: null,
+      loading: false,
+      lastCity: null,
 
-  fetchWeather: async (city: string) => {
-    set({ loading: true });
-    try {
-      const data = await getWeatherByCity(city);
-      set({ data: data.results, loading: false });
-    } catch (err) {
-      console.error(err);
-      set({ loading: false });
+      fetchWeather: async (city: string) => {
+        const currentCity = get().lastCity;
+        if (currentCity === city) return;
+
+        set({ loading: true });
+        try {
+          const data = await getWeatherByCity(city);
+          set({ data: data.results, lastCity: city, loading: false });
+        } catch (err) {
+          console.error(err);
+          set({ loading: false });
+        }
+      },
+    }),
+    {
+      name: "weather-store",
+      partialize: (state) => ({ lastCity: state.lastCity }),
     }
-  },
-}));
+  )
+);
