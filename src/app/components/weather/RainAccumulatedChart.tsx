@@ -1,11 +1,12 @@
 // src/app/components/weather/RainAccumulatedChart.tsx
 import { useWeatherStore } from "@/store/useWeatherStore";
 import RainAccumulationChart from "../charts/RainAccumulationChart";
+import { ChartsSkeleton } from "../Skeletons";
 
 export default function RainAccumulatedChart() {
   const { data, loading } = useWeatherStore();
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <ChartsSkeleton />;
   if (!data) return <p>Nenhum dado disponível</p>;
 
   return (

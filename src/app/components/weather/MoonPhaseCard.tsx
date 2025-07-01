@@ -2,13 +2,14 @@ import { useWeatherStore } from "@/store/useWeatherStore";
 import { getMoonPhaseIconUrl } from "@/utils/helpers";
 import { moonPhases } from "@/utils/resources";
 import Image from "next/image";
+import { MoonPhaseCardSkeleton } from "../Skeletons";
 
 export default function MoonPhaseCard() {
   const { data, loading } = useWeatherStore();
 
   const forecastData = data?.forecast;
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <MoonPhaseCardSkeleton />;
 
   return (
     <div className="bg-borderColor w-1/3 rounded-2xl h-80 p-4">

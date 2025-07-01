@@ -1,13 +1,14 @@
 import { useWeatherStore } from "@/store/useWeatherStore";
 import { getConditionIconUrl } from "@/utils/helpers";
 import Image from "next/image";
+import { WeatherNextDaysCardSkeleton } from "../Skeletons";
 
 export default function WeatherNextDaysCard() {
   const { data, loading } = useWeatherStore();
 
   const forecastData = data?.forecast;
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <WeatherNextDaysCardSkeleton />;
 
   return (
     <div className="bg-borderColor w-2/3 h-80 rounded-2xl p-4">
@@ -15,7 +16,7 @@ export default function WeatherNextDaysCard() {
         {forecastData?.slice(0, 7).map((item, index) => (
           <div
             key={index}
-            className="w-32 flex flex-col gap-4 justify-between items-center bg-background rounded-2xl p-2"
+            className="w-24 2xl:w-32 flex flex-col gap-3 items-center bg-background rounded-2xl p-2"
           >
             <span className="w-full border-b border-borderColor pb-2 font-bold text-center">
               {item.weekday}
@@ -28,7 +29,7 @@ export default function WeatherNextDaysCard() {
               height={60}
             />
             <span className="text-sm text-center">{item.description}</span>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1 mt-2">
               <span className="font-semibold text-center">
                 <i className="bi bi-arrow-down"></i>
                 {item.min}°C

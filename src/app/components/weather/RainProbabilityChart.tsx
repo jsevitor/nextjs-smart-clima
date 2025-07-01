@@ -1,10 +1,11 @@
 import { useWeatherStore } from "@/store/useWeatherStore";
 import RainProbabilityLineChart from "../charts/RainProbabilityChart";
+import { ChartsSkeleton } from "../Skeletons";
 
 export default function RainProbabilityChart() {
   const { data, loading } = useWeatherStore();
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <ChartsSkeleton />;
   if (!data) return <p>Nenhum dado disponível</p>;
 
   return (

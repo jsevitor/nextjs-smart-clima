@@ -2,11 +2,12 @@ import { useWeatherStore } from "@/store/useWeatherStore";
 import { getConditionIconUrl } from "@/utils/helpers";
 import { weekdays } from "@/utils/resources";
 import Image from "next/image";
+import { WeatherTomorrowCardSkeleton } from "../Skeletons";
 
 export default function WeatherTomorrowCard() {
   const { data, loading } = useWeatherStore();
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <WeatherTomorrowCardSkeleton />;
 
   return (
     <div className="bg-borderColor w-2/3 h-80 rounded-2xl p-4">

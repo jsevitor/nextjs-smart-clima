@@ -4,6 +4,7 @@ import { useWeatherStore } from "@/store/useWeatherStore";
 import { getConditionIconUrl } from "@/utils/helpers";
 import Image from "next/image";
 import { weekdays } from "@/utils/resources";
+import { WeatherOverviewCardSkeleton } from "../Skeletons";
 
 export default function WeatherOverviewCard() {
   const { data, loading, fetchWeather } = useWeatherStore();
@@ -12,7 +13,7 @@ export default function WeatherOverviewCard() {
     fetchWeather("São Paulo");
   }, []);
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <WeatherOverviewCardSkeleton />;
 
   return (
     <div className="bg-borderColor w-2/3 h-80 rounded-2xl p-4">
