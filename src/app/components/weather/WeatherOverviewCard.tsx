@@ -12,9 +12,8 @@ export default function WeatherOverviewCard() {
 
   useEffect(() => {
     if (!hasHydrated) return;
-
     fetchWeather(lastCity || "São Paulo");
-  }, [hasHydrated, lastCity]);
+  }, [hasHydrated]);
 
   if (loading || !data) return <WeatherOverviewCardSkeleton />;
 
