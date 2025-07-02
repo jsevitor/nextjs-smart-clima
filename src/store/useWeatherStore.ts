@@ -64,15 +64,16 @@ export const useWeatherStore = create<WeatherStore>()(
       coords: {},
 
       fetchWeather: async (city: string) => {
-        const currentCity = get().lastCity;
-        if (currentCity === city && get().data) return;
-
         set({ loading: true });
         try {
           const data = await getWeatherByCity(city);
-          set({ data: data.results, lastCity: city, loading: false });
+          set({
+            data: data.results,
+            lastCity: city,
+            loading: false,
+          });
         } catch (err) {
-          console.error(err);
+          console.error("Erro ao buscar clima:", err);
           set({ loading: false });
         }
       },
@@ -93,7 +94,7 @@ export const useWeatherStore = create<WeatherStore>()(
             return newCoords;
           }
         } catch (err) {
-          console.error(err);
+          console.error("Erro ao buscar coordenadas:", err);
         }
       },
 
@@ -108,12 +109,6 @@ export const useWeatherStore = create<WeatherStore>()(
       }),
       onRehydrateStorage: () => (state) => {
         state?.setHasHydrated(true);
-        if (!state?.lastCity) {
-          state?.fetchWeather("São Paulo");
-          state?.setHasHydrated(true);
-        } else {
-          state?.setHasHydrated(true);
-        }
       },
     }
   )
