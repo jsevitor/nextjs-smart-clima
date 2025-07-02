@@ -108,6 +108,12 @@ export const useWeatherStore = create<WeatherStore>()(
       }),
       onRehydrateStorage: () => (state) => {
         state?.setHasHydrated(true);
+        if (!state?.lastCity) {
+          state?.fetchWeather("São Paulo");
+          state?.setHasHydrated(true);
+        } else {
+          state?.setHasHydrated(true);
+        }
       },
     }
   )
