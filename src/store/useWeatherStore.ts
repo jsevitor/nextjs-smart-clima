@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { getWeatherByCity } from "@/services/weatherService";
+import { persist, createJSONStorage } from "zustand/middleware";
+import { getWeatherByCity, getCoordsByCity } from "@/services/weatherService";
 
 type ForecastDay = {
   date: string;
@@ -37,11 +37,21 @@ type Weather = {
   forecast: ForecastDay[];
 };
 
+type Coords = {
+  [city: string]: { lat: number; lon: number };
+};
+
 type WeatherStore = {
   data: Weather | null;
   loading: boolean;
   lastCity: string | null;
+  hasHydrated: boolean;
+  coords: Coords;
   fetchWeather: (city: string) => Promise<void>;
+  fetchCoordsByCity: (
+    city: string
+  ) => Promise<{ lat: number; lon: number } | undefined>;
+  setHasHydrated: (state: boolean) => void;
 };
 
 export const useWeatherStore = create<WeatherStore>()(
@@ -50,10 +60,12 @@ export const useWeatherStore = create<WeatherStore>()(
       data: null,
       loading: false,
       lastCity: null,
+      hasHydrated: false,
+      coords: {},
 
       fetchWeather: async (city: string) => {
         const currentCity = get().lastCity;
-        if (currentCity === city) return;
+        if (currentCity === city && get().data) return;
 
         set({ loading: true });
         try {
@@ -64,10 +76,39 @@ export const useWeatherStore = create<WeatherStore>()(
           set({ loading: false });
         }
       },
+
+      fetchCoordsByCity: async (city: string) => {
+        const cachedCoords = get().coords[city];
+        if (cachedCoords) return cachedCoords;
+
+        try {
+          const newCoords = await getCoordsByCity(city);
+          if (newCoords) {
+            set((state) => ({
+              coords: {
+                ...state.coords,
+                [city]: newCoords,
+              },
+            }));
+            return newCoords;
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      },
+
+      setHasHydrated: (state: boolean) => set({ hasHydrated: state }),
     }),
     {
       name: "weather-store",
-      partialize: (state) => ({ lastCity: state.lastCity }),
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        lastCity: state.lastCity,
+        coords: state.coords,
+      }),
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+      },
     }
   )
 );

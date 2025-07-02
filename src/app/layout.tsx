@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat, Red_Hat_Display } from "next/font/google";
-import "./globals.css";
 import Header from "./components/Header";
+import "./globals.css";
+import "leaflet/dist/leaflet.css";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",

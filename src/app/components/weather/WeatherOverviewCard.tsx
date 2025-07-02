@@ -7,17 +7,16 @@ import { weekdays } from "@/utils/resources";
 import { WeatherOverviewCardSkeleton } from "../Skeletons";
 
 export default function WeatherOverviewCard() {
-  const { data, loading, lastCity, fetchWeather } = useWeatherStore();
+  const { data, loading, lastCity, hasHydrated, fetchWeather } =
+    useWeatherStore();
 
   useEffect(() => {
-    if (lastCity) {
+    if (hasHydrated && lastCity) {
       fetchWeather(lastCity);
-    } else {
-      fetchWeather("Sao Paulo");
     }
-  }, [lastCity, fetchWeather]);
+  }, [hasHydrated, lastCity]);
 
-  if (loading) return <WeatherOverviewCardSkeleton />;
+  if (loading || !data) return <WeatherOverviewCardSkeleton />;
 
   return (
     <div className="bg-borderColor w-2/3 h-80 rounded-2xl p-4">
