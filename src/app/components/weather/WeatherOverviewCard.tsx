@@ -11,6 +11,9 @@ export default function WeatherOverviewCard() {
     useWeatherStore();
 
   useEffect(() => {
+    if (!lastCity) {
+      fetchWeather("São Paulo");
+    }
     if (hasHydrated && lastCity) {
       fetchWeather(lastCity);
     }
