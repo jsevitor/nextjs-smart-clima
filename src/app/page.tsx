@@ -10,6 +10,7 @@ import RainProbabilityChart from "./components/weather/RainProbabilityChart";
 import RainAccumulatedChart from "./components/weather/RainAccumulatedChart";
 import dynamic from "next/dynamic";
 import { useWeatherStore } from "@/store/useWeatherStore";
+import Footer from "./components/Footer";
 
 const WeatherMap = dynamic(() => import("@/app/components/WeatherMap"), {
   ssr: false,
@@ -36,7 +37,7 @@ export default function Home() {
   }, [lastCity, hasHydrated]);
 
   return (
-    <main className="container mx-auto h-screen pt-32 md:pt-24 flex flex-col gap-4">
+    <main className="container mx-auto pt-32 pb-8 md:pt-24 flex flex-col gap-4">
       <TabNavigation
         selectedTab={selectedTab}
         setSelectedTab={setSelectedTab}

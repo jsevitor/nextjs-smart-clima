@@ -19,7 +19,7 @@ export default function WeatherNextDaysCard() {
               key={index}
               className="w-full lg:w-24 2xl:w-32 flex lg:flex-col justify-between gap-3 items-center bg-background rounded-2xl px-4 py-2 lg:p-2"
             >
-              <span className="border-r lg:border-b border-borderColor pr-4 lg:pb-2 font-bold text-center">
+              <span className="border-r lg:border-r-0 lg:border-b border-borderColor pr-4 lg:pr-0 lg:pb-2 lg:w-full font-bold text-center">
                 {item.weekday}
               </span>
               <span className="text-sm">{item.date}</span>

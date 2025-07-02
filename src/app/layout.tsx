@@ -3,6 +3,7 @@ import { Montserrat, Red_Hat_Display } from "next/font/google";
 import Header from "./components/Header";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
+import Footer from "./components/Footer";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -35,6 +36,7 @@ export default function RootLayout({
       <body className={`${redHatDisplay.className} antialiased px-4 md:px-0`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
