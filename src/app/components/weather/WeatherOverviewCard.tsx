@@ -19,7 +19,7 @@ export default function WeatherOverviewCard() {
   if (loading || !data) return <WeatherOverviewCardSkeleton />;
 
   return (
-    <div className="bg-borderColor w-2/3 h-80 rounded-2xl p-4">
+    <div className="bg-borderColor w-full lg:w-2/3 lg:h-80 rounded-2xl p-4">
       {data ? (
         <div>
           <div className="flex justify-between border-b border-background pb-2">
@@ -32,8 +32,8 @@ export default function WeatherOverviewCard() {
               <span>{data.time}</span>
             </div>
           </div>
-          <div className="flex items-center pt-4">
-            <div className="flex justify-center w-1/2 mt-2">
+          <div className="flex flex-col lg:flex-row items-center pt-4">
+            <div className="flex justify-center w-full lg:w-1/2 mt-2">
               <div className="flex flex-col gap-4">
                 <div className="flex gap-8 items-center">
                   <Image
@@ -50,7 +50,7 @@ export default function WeatherOverviewCard() {
                 </div>
                 <div className="flex flex-col items-center justify-center">
                   <span className="font-semibold">{data.description}</span>
-                  <div className="flex gap-4 mt-4">
+                  <div className="flex gap-4 mt-4 text-xl">
                     <span className="font-semibold">
                       <i className="bi bi-arrow-down"></i>
                       {data.forecast[0].min}°C
@@ -63,7 +63,7 @@ export default function WeatherOverviewCard() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center w-1/2 mt-2">
+            <div className="flex justify-center w-full lg:w-1/2 mt-10 lg:mt-2">
               <div className="flex flex-col gap-2 w-4/5">
                 <div className="flex justify-between border-b border-background pb-2">
                   <span>Chuva</span>

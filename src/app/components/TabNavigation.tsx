@@ -20,7 +20,7 @@ export default function TabNavigation({
   };
 
   return (
-    <nav>
+    <nav className="flex justify-center md:justify-start ">
       <ul className="flex gap-8 font-semibold">
         {options.map((item, idx) => (
           <li

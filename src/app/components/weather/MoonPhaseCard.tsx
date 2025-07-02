@@ -12,7 +12,7 @@ export default function MoonPhaseCard() {
   if (loading) return <MoonPhaseCardSkeleton />;
 
   return (
-    <div className="bg-borderColor w-1/3 rounded-2xl h-80 p-4">
+    <div className="bg-borderColor w-full lg:w-1/3 rounded-2xl lg:h-80 p-4">
       {data ? (
         <div className="flex flex-col justify-between gap-4 h-full">
           <div className="flex justify-center border-b border-background pb-2">
@@ -27,7 +27,7 @@ export default function MoonPhaseCard() {
             />
             <span>{moonPhases[data.moon_phase]}</span>
           </div>
-          <div className="flex justify-between gap-4">
+          <div className="flex justify-center lg:justify-between gap-12 lg:gap-4 mt-8 lg:mt-0">
             {forecastData?.slice(0, 7).map((item, index) => (
               <div className="flex flex-col items-center" key={index}>
                 <Image

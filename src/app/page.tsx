@@ -36,26 +36,26 @@ export default function Home() {
   }, [lastCity, hasHydrated]);
 
   return (
-    <main className="container mx-auto h-screen pt-24 flex flex-col gap-4">
+    <main className="container mx-auto h-screen pt-32 md:pt-24 flex flex-col gap-4">
       <TabNavigation
         selectedTab={selectedTab}
         setSelectedTab={setSelectedTab}
       />
-      <div className="flex gap-4">
+      <div className="flex flex-col lg:flex-row gap-4">
         {selectedTab === "today" && <WeatherOverviewCard />}
         {selectedTab === "tomorrow" && <WeatherTomorrowCard />}
         {selectedTab === "nextDays" && <WeatherNextDaysCard />}
         <MoonPhaseCard />
       </div>
-      <div className="flex gap-4">
-        <div className="w-2/3 bg-borderColor rounded-2xl">
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="w-full lg:w-2/3 bg-borderColor rounded-2xl">
           <WeatherMap
             center={coords}
             city={lastCity || "São Paulo"}
             description={data?.description}
           />
         </div>
-        <div className="w-1/3 flex flex-col gap-4">
+        <div className="w-full lg:w-1/3 flex flex-col gap-4">
           <RainProbabilityChart />
           <RainAccumulatedChart />
         </div>

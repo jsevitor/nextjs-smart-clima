@@ -39,7 +39,7 @@ function MapFocusUpdater({ center }: MapFocusUpdaterProps) {
 
   useEffect(() => {
     // map.setView(center, map.getZoom());
-    map.flyTo(center, map.getZoom());
+    // map.flyTo(center, map.getZoom());
   }, [center, map]);
 
   return null;
@@ -51,7 +51,7 @@ export default function WeatherMap({
   description,
 }: WeatherMapProps) {
   return (
-    <div className="w-full h-full rounded-2xl overflow-hidden border border-borderColor">
+    <div className="w-full h-[450px] lg:h-full rounded-2xl overflow-hidden border border-borderColor">
       <MapContainer
         center={center}
         zoom={12}

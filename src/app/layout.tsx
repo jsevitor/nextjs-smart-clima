@@ -32,7 +32,7 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
         />
       </head>
-      <body className={`${redHatDisplay.className} antialiased`}>
+      <body className={`${redHatDisplay.className} antialiased px-4 md:px-0`}>
         <Header />
         {children}
       </body>
