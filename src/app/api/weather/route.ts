@@ -21,6 +21,7 @@ export async function GET(req: NextRequest) {
     const data = await res.json();
     return NextResponse.json(data);
   } catch (error) {
+    console.error("Erro ao buscar dados do clima:", error);
     return NextResponse.json(
       { error: "Erro ao buscar dados do clima" },
       { status: 500 }

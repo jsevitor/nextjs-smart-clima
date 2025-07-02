@@ -14,7 +14,7 @@ export default function WeatherOverviewCard() {
     if (hasHydrated && lastCity) {
       fetchWeather(lastCity);
     }
-  }, [hasHydrated, lastCity]);
+  }, [hasHydrated, lastCity, fetchWeather]);
 
   if (loading || !data) return <WeatherOverviewCardSkeleton />;
 

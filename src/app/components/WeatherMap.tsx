@@ -16,7 +16,11 @@ import { MapCardSkeleton } from "./Skeletons";
 
 const { BaseLayer, Overlay } = LayersControl;
 
-delete (L.Icon.Default.prototype as any)._getIconUrl;
+interface IconDefaultPrototypeFix extends L.Icon.Default {
+  _getIconUrl?: () => void;
+}
+
+delete (L.Icon.Default.prototype as IconDefaultPrototypeFix)._getIconUrl;
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: "/marker-icon-2x.png",

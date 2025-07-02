@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { Montserrat, Red_Hat_Display } from "next/font/google";
+import { Red_Hat_Display } from "next/font/google";
 import Header from "./components/Header";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 import Footer from "./components/Footer";
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-});
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat-display",
