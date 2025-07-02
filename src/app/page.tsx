@@ -52,7 +52,7 @@ export default function Home() {
         <div className="w-full lg:w-2/3 bg-borderColor rounded-2xl">
           <WeatherMap
             center={coords}
-            city={lastCity || "São Paulo"}
+            city={data?.city || "São Paulo"}
             description={data?.description}
           />
         </div>

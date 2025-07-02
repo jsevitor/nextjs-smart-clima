@@ -11,7 +11,7 @@ export default function RainProbabilityChart() {
       {data ? (
         <div className="flex flex-col justify-between gap-4 h-full">
           <div className="flex justify-center border-b border-background pb-2">
-            <h2>Probabilidade de chuva</h2>
+            <h2 className="font-bold">Probabilidade de chuva</h2>
           </div>
           <div className="flex flex-col gap-4 justify-center items-center">
             <RainProbabilityLineChart data={data} />

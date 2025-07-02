@@ -16,7 +16,7 @@ export default function MoonPhaseCard() {
       {data ? (
         <div className="flex flex-col justify-between gap-4 h-full">
           <div className="flex justify-center border-b border-background pb-2">
-            <h2>Fase da Lua</h2>
+            <h2 className="font-bold">Fase da Lua</h2>
           </div>
           <div className="flex flex-col gap-2 justify-center items-center">
             <Image
@@ -25,7 +25,7 @@ export default function MoonPhaseCard() {
               width={120}
               height={120}
             />
-            <span>{moonPhases[data.moon_phase]}</span>
+            <span className="font-semibold">{moonPhases[data.moon_phase]}</span>
           </div>
           <div className="flex justify-center lg:justify-between gap-2 md:gap-12 lg:gap-4 md:mt-8 lg:mt-0">
             {forecastData?.slice(0, 7).map((item, index) => (
