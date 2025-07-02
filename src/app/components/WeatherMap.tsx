@@ -11,6 +11,8 @@ import {
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useEffect } from "react";
+import { useWeatherStore } from "@/store/useWeatherStore";
+import { MapCardSkeleton } from "./Skeletons";
 
 const { BaseLayer, Overlay } = LayersControl;
 
@@ -38,8 +40,7 @@ function MapFocusUpdater({ center }: MapFocusUpdaterProps) {
   const map = useMap();
 
   useEffect(() => {
-    // map.setView(center, map.getZoom());
-    // map.flyTo(center, map.getZoom());
+    map.flyTo(center, map.getZoom());
   }, [center, map]);
 
   return null;
@@ -50,6 +51,10 @@ export default function WeatherMap({
   city,
   description,
 }: WeatherMapProps) {
+  const { data, loading } = useWeatherStore();
+
+  if (loading || !data) return <MapCardSkeleton />;
+
   return (
     <div className="w-full h-[450px] lg:h-full rounded-2xl overflow-hidden border border-borderColor">
       <MapContainer

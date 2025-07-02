@@ -94,7 +94,7 @@ export default function WeatherOverviewCard() {
           </div>
         </div>
       ) : (
-        <p>Erro ao carregar</p>
+        <p>Nenhum dado disponível</p>
       )}
     </div>
   );

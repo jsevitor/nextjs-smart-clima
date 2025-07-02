@@ -7,7 +7,7 @@ import { WeatherTomorrowCardSkeleton } from "../Skeletons";
 export default function WeatherTomorrowCard() {
   const { data, loading } = useWeatherStore();
 
-  if (loading) return <WeatherTomorrowCardSkeleton />;
+  if (loading || !data) return <WeatherTomorrowCardSkeleton />;
 
   return (
     <div className="bg-borderColor w-full lg:w-2/3 lg:h-80 rounded-2xl p-4">
@@ -80,7 +80,7 @@ export default function WeatherTomorrowCard() {
           </div>
         </div>
       ) : (
-        <p>Erro ao carregar</p>
+        <p>Nenhum dado disponível</p>
       )}
     </div>
   );
