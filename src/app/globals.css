@@ -22,12 +22,10 @@
   --color-min: var(--min);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #343436;
-    --foreground: #f3f3f3;
-    --footer: #d6d6d680;
-  }
+[data-theme="dark"] {
+  --background: #343436;
+  --foreground: #f3f3f3;
+  --footer: #d6d6d680;
 }
 
 * {
