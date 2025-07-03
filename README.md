@@ -26,7 +26,7 @@ A aplicação está disponível em: [https://smart-clima.vercel.app/](https://sm
 - **Next.js (App Router)**
 - **TypeScript**
 - **Zustand** (com middleware `persist`)
-- **Tailwind CSS** + CSS Modules
+- **Tailwind CSS** 
 - **React Leaflet** para mapas
 - **OpenStreetMap + OpenWeatherMap Layers**
 - **Recharts** para gráficos responsivos
