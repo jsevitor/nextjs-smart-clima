@@ -7,7 +7,7 @@
 
 ## Acesso ao Projeto
 
-A aplicação está disponível em: [https://smart-clima.netlify.app/](https://smart-clima.netlify.app/)
+A aplicação está disponível em: [https://smart-clima.vercel.app/](https://smart-clima.vercel.app/)
 
 ## Funcionalidades
 
