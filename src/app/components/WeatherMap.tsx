@@ -60,12 +60,12 @@ export default function WeatherMap({
   if (loading || !data) return <MapCardSkeleton />;
 
   return (
-    <div className="w-full h-[450px] lg:h-full rounded-2xl overflow-hidden border border-borderColor">
+    <div className="w-full h-[450px] lg:h-full rounded-2xl overflow-hidden border border-borderColor -z-0">
       <MapContainer
         center={center}
         zoom={12}
         scrollWheelZoom={true}
-        style={{ height: "100%", width: "100%" }}
+        style={{ height: "100%", width: "100%", zIndex: 0 }}
       >
         <MapFocusUpdater center={center} />
         <LayersControl position="topright">
