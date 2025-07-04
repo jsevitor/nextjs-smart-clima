@@ -7,7 +7,7 @@
 
 ## Acesso ao Projeto
 
-A aplicação está disponível em: [https://smart-clima.netlify.app/](https://smart-clima.netlify.app/)
+A aplicação está disponível em: [https://smart-clima.vercel.app/](https://smart-clima.vercel.app/)
 
 ## Funcionalidades
 
@@ -26,7 +26,7 @@ A aplicação está disponível em: [https://smart-clima.netlify.app/](https://s
 - **Next.js (App Router)**
 - **TypeScript**
 - **Zustand** (com middleware `persist`)
-- **Tailwind CSS** + CSS Modules
+- **Tailwind CSS** 
 - **React Leaflet** para mapas
 - **OpenStreetMap + OpenWeatherMap Layers**
 - **Recharts** para gráficos responsivos
